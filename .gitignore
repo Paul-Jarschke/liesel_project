@@ -1,1 +1,3 @@
-mcmc_results_rossi_large_1000n.pkl #ignore all pickle files
+# Do not track MCMC result files
+test_notebooks/mcmc_results_rossi_large_1000n.pkl
+test_notebooks/mcmc_results_rossi_large_10000n.pkl
