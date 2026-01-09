@@ -1,1 +1,1 @@
-*.pkl #ignore all pickle files
+mcmc_results_rossi_large_1000n.pkl #ignore all pickle files
