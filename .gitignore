@@ -1,1 +1,1 @@
-*.pkl
+*.pkl #ignore all pickle files
