@@ -22,4 +22,3 @@ write(json_data, output_path)
 
 # Visual parameter validation
 print(paste("Number of parameters (K):", ncol(camera[[1]]$X)))
-
