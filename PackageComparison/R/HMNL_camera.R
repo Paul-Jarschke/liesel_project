@@ -25,7 +25,7 @@ cache_dir <- file.path("PackageComparison", "R", "model_cache")
 # 2. Safety Check: Create the directory if it doesn't exist
 if (!dir.exists(cache_dir)) {
   # recursive = TRUE ensures it builds the whole path if parts are missing
-  dir.create(cache_dir, recursive = TRUE) 
+  dir.create(cache_dir, recursive = TRUE)
   print(paste("Created directory:", cache_dir))
 }
 
@@ -39,7 +39,6 @@ if (file.exists(model_path)) {
 } else {
   print("Running rhierMnlRwMixture (this may take a moment)...")
   out <- rhierMnlRwMixture(Data = data_list, Prior = prior_list, Mcmc = mcmc_list)
-  
   saveRDS(out, model_path)
   print(paste("Model saved to:", model_path))
 }
@@ -132,7 +131,7 @@ hits <- 0
 total_obs <- 0
 
 # Loop over every respondent
-for (i in 1:length(camera)) {
+for (i in seq_along(camera)) {
   y_true <- camera[[i]]$y
   X_raw  <- camera[[i]]$X
   beta_i <- beta_ind_means[i, ] # Use this person's specific beta
