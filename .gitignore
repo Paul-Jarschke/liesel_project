@@ -6,3 +6,4 @@ test_notebooks/mcmc_results_rossi_large_10000n.pkl
 *.pkl
 *.csv
 *.rds
+*.RData
