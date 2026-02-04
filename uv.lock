@@ -1307,6 +1307,7 @@ dependencies = [
     { name = "plotnine" },
     { name = "pykernel" },
     { name = "pymc" },
+    { name = "pyreadr" },
     { name = "tensorflow" },
 ]
 
@@ -1330,6 +1331,7 @@ requires-dist = [
     { name = "plotnine", specifier = ">=0.15.1" },
     { name = "pykernel", specifier = ">=0.1.6" },
     { name = "pymc", specifier = ">=5.26.1" },
+    { name = "pyreadr", specifier = ">=0.5.4" },
     { name = "tensorflow", specifier = ">=2.20.0" },
 ]
 
@@ -2149,6 +2151,27 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f2/a5/181488fc2b9d093e3972d2a472855aae8a03f000592dbfce716a512b3359/pyparsing-3.2.5.tar.gz", hash = "sha256:2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6", size = 1099274, upload-time = "2025-09-21T04:11:06.277Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/10/5e/1aa9a93198c6b64513c9d7752de7422c06402de6600a8767da1524f9570b/pyparsing-3.2.5-py3-none-any.whl", hash = "sha256:e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e", size = 113890, upload-time = "2025-09-21T04:11:04.117Z" },
+]
+
+[[package]]
+name = "pyreadr"
+version = "0.5.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pandas" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1d/fe/90584d7f74bde81f57d44d640ead55c5f91c450ae47f569c803e138b5bc9/pyreadr-0.5.4.tar.gz", hash = "sha256:05b18cc830dceda3ef3d477bd8e50f072474e177f0cf67b6ad4fb3d7f3de11fd", size = 1292809, upload-time = "2025-11-25T16:40:14.191Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/29/b9/8d538b79a67b40619381e2b5b56965ebaf3d74c50ac986adafe395a766f8/pyreadr-0.5.4-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:9390ca0cdb99bc72d3125bbb28bf36a31d1ba8cd07d7512cd522e5630656e5be", size = 317921, upload-time = "2025-11-25T16:39:55.962Z" },
+    { url = "https://files.pythonhosted.org/packages/28/02/722aaacb71bcec5eaf23718cd1de489ef82852f62a62214fca7cfc68a89f/pyreadr-0.5.4-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:53410aef1b517e814aedfc6f6dc25d5c6ff9ed07961971f5c7ef83e96846d1e7", size = 318134, upload-time = "2025-11-25T16:39:57.084Z" },
+    { url = "https://files.pythonhosted.org/packages/56/ec/6d3a1a6699ec85cfec0f7744a2ae299f359b581035c007cf7082df99b348/pyreadr-0.5.4-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:63fd4db6b279b9dd909d333fe441d001a5d199558aadf75b3e69d22027815fc7", size = 775512, upload-time = "2025-11-25T16:39:58.323Z" },
+    { url = "https://files.pythonhosted.org/packages/f9/6b/f7247630c56c5bd31cbde96a1e8de14a50f87959a5abaa7cf709edec0bef/pyreadr-0.5.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:6564c003792c281ae49739f1938a146708640aacb7f97b04c7b47d6f86467f7a", size = 775013, upload-time = "2025-11-25T16:39:59.741Z" },
+    { url = "https://files.pythonhosted.org/packages/e0/a9/430b0cc0f32e1d3fada1a5d6b07da187cd0be1dee9f7d43432482021e115/pyreadr-0.5.4-cp313-cp313-win_amd64.whl", hash = "sha256:ea541cc5248e0792a93caa1d79aea83a52561a8de72bb01a395c28bf352c4c6c", size = 2350499, upload-time = "2025-11-25T16:40:01.413Z" },
+    { url = "https://files.pythonhosted.org/packages/84/4d/c431887359a159ea6fb4bdf0d029d1e4a0fc2de01a486e5aa1a7dc07cf24/pyreadr-0.5.4-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:4bd6c2a12ffa9e71c34ec6732f1ef811217d81a97ac644ad90d6b36ef0ac48ba", size = 320054, upload-time = "2025-11-25T16:40:03.9Z" },
+    { url = "https://files.pythonhosted.org/packages/ec/7e/09925b2924f0814d79e1dfefa44bf34ce958af11c70f2fe9aece14c1965b/pyreadr-0.5.4-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:9af6b4bffbf17bdf9b8b6bf06d1e217d1ab791d9b42450bd4753e294fb414c94", size = 320133, upload-time = "2025-11-25T16:40:05.226Z" },
+    { url = "https://files.pythonhosted.org/packages/62/a0/1d3cdf154d403c20514e5db8758935b860208c12998871c9fba2a1de266b/pyreadr-0.5.4-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:54292e3745533d267a856394c4d019330219f36e838898c9b387da05bb99a220", size = 774824, upload-time = "2025-11-25T16:40:07.038Z" },
+    { url = "https://files.pythonhosted.org/packages/dd/17/0cc6ed7d2c67daad92a96faccb765c30709c576019b6ec5eb3da1e4c36ac/pyreadr-0.5.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e247d2b69bfb636f7e1c15df7360829f7eff4af0736d2dc0c495747cb86c69ac", size = 770862, upload-time = "2025-11-25T16:40:08.938Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/4d/fa61e6f884f797c2c571e82dbf477531f59790a1e26346d95cec39305d7b/pyreadr-0.5.4-cp314-cp314-win_amd64.whl", hash = "sha256:730041e7f46fce79b40e54bdbbb7cd2bcb96951163d0962221b7a11b7c46157f", size = 2384417, upload-time = "2025-11-25T16:40:10.985Z" },
 ]
 
 [[package]]

@@ -16,6 +16,7 @@ dependencies = [
     "plotnine>=0.15.1",
     "pykernel>=0.1.6",
     "pymc>=5.26.1",
+    "pyreadr>=0.5.4",
     "tensorflow>=2.20.0",
 ]
 
