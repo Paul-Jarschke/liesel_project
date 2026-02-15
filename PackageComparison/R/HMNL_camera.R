@@ -6,7 +6,7 @@ library(bayesm)
 data(camera)
 
 # Configuration ---
-R_total    <- 11000   # Total iterations    (including burn-in!)
+R_total    <- 41000   # Total iterations    (including burn-in!)
 burn_in    <- 1000    # Burn-in to discard
 keep_every <- 1       # Thinning parameter  (No thinning)
 
@@ -90,7 +90,7 @@ if (!dir.exists(export_dir)) {
 # Prepare Data
 mu_draws_df   <- as.data.frame(mu_final)
 beta_draws_df <- final_beta_df
-n_samples_val <- as.integer(n_samples) 
+n_samples_val <- as.integer(n_samples)
 
 # Save
 file_name <- paste0("bayesm_output_camera_", n_samples, "_samples.RData")
