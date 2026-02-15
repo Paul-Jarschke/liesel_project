@@ -9,6 +9,7 @@ dependencies = [
     "graphviz>=0.21",
     "ipykernel>=7.1.0",
     "jax>=0.6.2",
+    "jaxlib>=0.6.2",
     "jupyter>=1.1.1",
     "liesel>=0.4.1",
     "notebook>=7.4.7",
@@ -18,6 +19,7 @@ dependencies = [
     "pymc>=5.26.1",
     "pyreadr>=0.5.4",
     "tensorflow>=2.20.0",
+    "tensorflow-probability>=0.25.0",
 ]
 
 [dependency-groups]
