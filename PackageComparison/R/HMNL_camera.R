@@ -93,7 +93,7 @@ beta_draws_df <- final_beta_df
 n_samples_val <- as.integer(n_samples) 
 
 # Save
-file_name <- paste0("R_draws_", n_samples, "_samples.RData")
+file_name <- paste0("bayesm_output_camera_", n_samples, "_samples.RData")
 save_path <- file.path(export_dir, file_name)
 
 save(mu_draws_df, beta_draws_df, n_samples_val, file = save_path)
