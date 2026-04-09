@@ -1,0 +1,9 @@
+In this folder ther is differentiation between demeaning the demographohc varibale and not demmeaning them.
+This is done since teh newer version of bayesm throws an error adn stops, when the Z matrix does not appear to be de-meaned:
+
+Example for maragairn dataset with 2 demographic variables:
+
+"Running rhierMnlRwMixture..."
+Error:
+Z does not appear to be de-meaned: colmeans=  3.11393135658871
+Z does not appear to be de-meaned: colmeans=  3.0702875399361
