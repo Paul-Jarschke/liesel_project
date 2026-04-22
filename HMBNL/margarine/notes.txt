@@ -1,5 +1,5 @@
-In this folder ther is differentiation between demeaning the demographohc varibale and not demmeaning them.
-This is done since teh newer version of bayesm throws an error adn stops, when the Z matrix does not appear to be de-meaned:
+In this folder ther is differentiation between demeaning the demographic varibale and not demmeaning them.
+This is done since teh newer version of bayesm throws an error and stops, when the Z matrix does not appear to be de-meaned:
 
 Example for maragairn dataset with 2 demographic variables:
 

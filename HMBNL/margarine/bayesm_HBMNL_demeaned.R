@@ -11,14 +11,16 @@ library(bayesm)
 data(margarine)
 print("Preprocessing margarine data...")
 
-select <- c(1, 2, 3, 4, 5, 7) 
+select <- c(1, 2, 3, 4, 5, 7)
 chPr_raw <- as.matrix(margarine$choicePrice)
 demos_raw <- as.matrix(margarine$demos)
 
 # 2. CHOICE DATA PREPROCESSING
-chPr <- cbind(chPr_raw[, 1], 
-              chPr_raw[, 2], 
-              log(chPr_raw[, 2 + select]))
+chPr <- cbind(
+  chPr_raw[, 1],
+  chPr_raw[, 2],
+  log(chPr_raw[, 2 + select])
+)
 
 chPr <- chPr[chPr[, 2] %in% select, , drop = FALSE]
 chPr[chPr[, 2] == 7, 2] <- 6
@@ -26,14 +28,14 @@ chPr[chPr[, 2] == 7, 2] <- 6
 # 3. CONSTRUCT LGTDATA (313 households)
 hhid_list <- unique(chPr[, 1])
 lgtdata <- list()
-keep_hhids <- c() 
+keep_hhids <- c()
 p <- length(select)
 
 ind <- 1
 for (i in 1:length(hhid_list)) {
   hh_data <- chPr[chPr[, 1] == hhid_list[i], , drop = FALSE]
   nobs <- nrow(hh_data)
-  
+
   if (nobs >= 5) {
     y <- hh_data[, 2]
     X <- createX(p = p, na = 1, Xa = hh_data[, 3:8], nd = NULL, Xd = NULL, INT = TRUE, base = 1)
@@ -54,7 +56,7 @@ for (id in keep_hhids) {
 
 Z <- matrix(NA, nrow = nrow(Z_filtered), ncol = 2)
 Z[, 1] <- log(Z_filtered[, 1]) # Log Income
-Z[, 2] <- Z_filtered[, 2]      # Family Size
+Z[, 2] <- Z_filtered[, 2] # Family Size
 
 # --- CRITICAL FIX: De-mean Z to satisfy bayesm and match paper's intent ---
 Z[, 1] <- Z[, 1] - mean(Z[, 1])
@@ -95,7 +97,7 @@ delta_draws <- out$Deltadraw[keep_idx, ]
 # Extract Beta (Individual Household Coefficients)
 beta_kept <- out$betadraw[, , keep_idx]
 
-# --- NEW: Extract Covariance Matrices ---
+# Extract Covariance Matrices
 # bayesm stores 'rooti' (inverse Cholesky root). We use chol2inv to get the Covariance matrix.
 cov_list <- lapply(out$nmix$compdraw, function(x) chol2inv(x[[1]]$rooti))
 
