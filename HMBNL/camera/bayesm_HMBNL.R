@@ -21,7 +21,7 @@ k_dim <- ncol(lgtdata[[1]]$X) # 10 parameters
 print(paste("Loaded", n_units, "households with", k_dim, "parameters."))
 
 # 2. MODEL CONFIGURATION
-# Matches the Python MCMC specs: 10,000 posterior + 1,000 warmup
+# Matches the Python MCMC specs: 40,000 posterior + 1,000 warmup
 R_total <- 41000
 burn_in <- 1000
 keep_every <- 4
