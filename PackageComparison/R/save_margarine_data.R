@@ -37,7 +37,7 @@ for (i in 1:n_units) {
   y <- subset_dat$choice
   n_obs_i <- nrow(subset_dat)
   n_alts  <- 10
-  n_params <- 10 
+  n_params <- 10
 
   X_i <- matrix(0, nrow = n_obs_i * n_alts, ncol = n_params)
 
