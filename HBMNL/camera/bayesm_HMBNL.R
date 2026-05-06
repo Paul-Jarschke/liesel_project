@@ -1,17 +1,16 @@
 # ==============================================================================
 # REPLICATION: Hierarchical MNL for Camera Dataset
-# Matches Python Implementation (Liesel)
 # ==============================================================================
 
 library(this.path)
 library(bayesm)
 
-# 1. SETUP & DATA LOADING
+# SETUP & DATA LOADING
 print("Loading camera data...")
 data(camera)
 
 # The camera dataset is already a list of lists in the exact 'lgtdata' format
-# expected by rhierMnlRwMixture. No manual createX() looping is required.
+# expected by rhierMnlRwMixture. No manual createX() looping is required
 lgtdata <- camera
 
 n_units <- length(lgtdata)
@@ -20,7 +19,7 @@ k_dim <- ncol(lgtdata[[1]]$X) # 10 parameters
 
 print(paste("Loaded", n_units, "households with", k_dim, "parameters."))
 
-# 2. MODEL CONFIGURATION
+# MODEL CONFIGURATION
 # Matches the Python MCMC specs: 40,000 posterior + 1,000 warmup
 R_total <- 41000
 burn_in <- 1000
@@ -29,9 +28,9 @@ keep_every <- 4
 # Data List (Notice Z is omitted since there are no demographic covariates)
 data_list <- list(p = p, lgtdata = lgtdata)
 
-# Prior Config to match Python / Liesel setup
-# Since there is no Z matrix, bayesm implicitly models an intercept.
-# We supply a 1x1 A matrix for that intercept variance.
+# Prior Config to match Liesel setup
+# Since there is no Z matrix, bayesm implicitly models an intercept
+# We supply a 1x1 A matrix for that intercept variance
 Prior <- list(
     ncomp = 1,
     A = matrix(0.01),
@@ -41,12 +40,12 @@ Prior <- list(
 
 Mcmc <- list(R = R_total, keep = keep_every, nprint = 500)
 
-# 3. RUN MODEL
+# RUN MODEL
 print("Running rhierMnlRwMixture...")
 set.seed(123)
 out <- rhierMnlRwMixture(Data = data_list, Prior = Prior, Mcmc = Mcmc)
 
-# 4. POST-PROCESSING
+# POST-PROCESSING
 print("Processing posterior samples...")
 R_draws <- length(out$nmix$compdraw)
 keep_idx <- (burn_in + 1):R_draws
@@ -67,8 +66,8 @@ cov_list <- lapply(out$nmix$compdraw, function(x) chol2inv(x[[1]]$rooti))
 cov_draws <- do.call(rbind, lapply(cov_list, as.vector))
 cov_draws_df <- as.data.frame(cov_draws[keep_idx, , drop = FALSE])
 
-# Because Z = NULL, Deltadraw is often empty/dropped by bayesm.
-# In this homogenous setup, the mixture mean (Mu) IS the Delta.
+# Because Z = NULL, Deltadraw is often empty/dropped by bayesm
+# In this homogenous setup, the mixture mean (Mu) IS the Delta
 if (!is.null(out$Deltadraw) && length(out$Deltadraw) > 0) {
     # If bayesm happens to return it, coerce safely
     delta_matrix <- matrix(out$Deltadraw, ncol = length(param_names), byrow = TRUE)
@@ -81,7 +80,7 @@ if (!is.null(out$Deltadraw) && length(out$Deltadraw) > 0) {
 
 beta_kept <- out$betadraw[, , keep_idx, drop = FALSE]
 
-# 5. SAVE OUTPUT
+# SAVE OUTPUT
 script_dir <- this.path::here()
 
 # Append "Data" to the export directory path
