@@ -1,13 +1,13 @@
 # ==============================================================================
 # REPLICATION: Hierarchical MNL (Rossi et al. 2006 Margarine Example)
 # Matches Python Implementation (Liesel) by using centered/de-meaned demographic
-# variables unlike explained in the paper (p.)
+# variables UNLIKE explained in the paper, since bayesm now requires cntereing of Z
 # ==============================================================================
 
 library(this.path)
 library(bayesm)
 
-# 1. SETUP & DATA LOADING
+# SETUP & DATA LOADING
 data(margarine)
 print("Preprocessing margarine data...")
 
@@ -15,7 +15,7 @@ select <- c(1, 2, 3, 4, 5, 7)
 chPr_raw <- as.matrix(margarine$choicePrice)
 demos_raw <- as.matrix(margarine$demos)
 
-# 2. CHOICE DATA PREPROCESSING
+# CHOICE DATA PREPROCESSING
 chPr <- cbind(
   chPr_raw[, 1],
   chPr_raw[, 2],
@@ -25,7 +25,7 @@ chPr <- cbind(
 chPr <- chPr[chPr[, 2] %in% select, , drop = FALSE]
 chPr[chPr[, 2] == 7, 2] <- 6
 
-# 3. CONSTRUCT LGTDATA (313 households)
+# CONSTRUCT LGTDATA (313 households)
 hhid_list <- unique(chPr[, 1])
 lgtdata <- list()
 keep_hhids <- c()
@@ -58,14 +58,14 @@ Z <- matrix(NA, nrow = nrow(Z_filtered), ncol = 2)
 Z[, 1] <- log(Z_filtered[, 1]) # Log Income
 Z[, 2] <- Z_filtered[, 2] # Family Size
 
-# --- CRITICAL FIX: De-mean Z to satisfy bayesm and match paper's intent ---
+# --- CRITICAL: De-mean Z to satisfy bayesm ---
 Z[, 1] <- Z[, 1] - mean(Z[, 1])
 Z[, 2] <- Z[, 2] - mean(Z[, 2])
-# --------------------------------------------------------------------------
+
 
 Z <- as.matrix(Z)
 
-# 5. MODEL CONFIGURATION
+# MODEL CONFIGURATION
 R_total <- 41000
 burn_in <- 1000
 keep_every <- 1
@@ -74,12 +74,12 @@ data_list <- list(p = p, lgtdata = lgtdata, Z = Z)
 Prior <- list(ncomp = 1, A = 0.01 * diag(3), nu = 6 + 3, V = (6 + 3) * diag(6))
 Mcmc <- list(R = R_total, keep = keep_every, nprint = 500)
 
-# 6. RUN MODEL
+# RUN MODEL
 print("Running rhierMnlRwMixture...")
 set.seed(123)
 out <- rhierMnlRwMixture(Data = data_list, Prior = Prior, Mcmc = Mcmc)
 
-# 7. POST-PROCESSING
+# POST-PROCESSING
 print("Processing posterior samples...")
 R_draws <- length(out$nmix$compdraw)
 keep_idx <- (burn_in + 1):R_draws
@@ -106,7 +106,7 @@ cov_draws_mat <- t(sapply(cov_list, as.vector))[keep_idx, ]
 cov_draws_df <- as.data.frame(cov_draws_mat)
 # ----------------------------------------
 
-# 8. SAVE OUTPUT
+# SAVE OUTPUT
 # Create the Data folder inside your current working directory
 export_dir <- file.path(getwd(), "Data")
 if (!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
