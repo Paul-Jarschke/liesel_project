@@ -115,13 +115,13 @@ if __name__ == "__main__":
     import os
 
     # 1. Define all simulation parameters explicitly
-    N_UNITS = 300
+    N_UNITS = 500
     N_OBS = 30
     N_ALTS = 4
-    N_COMPS = 2
+    N_COMPS = 5
     N_DEMOS = 2
     SEED = 101
-    CUSTOM_PVEC = [0.75, 0.25]
+    CUSTOM_PVEC = [0.10, 0.15, 0.20, 0.25, 0.30]
 
     print("Simulating data...")
     sim_data = generate_mixture_simulated_data(
